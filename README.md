@@ -1,3 +1,9 @@
+# Rightpoint Movember Tinder
+
+A Tinder clone to use for Rightpoint's Movember Party.
+
+Based on [dbradleyfl's tinder-interface](https://github.com/dbradleyfl/tinder-interface).
+
 # Tinder Interface
 
 I was challenged by [Steve](https://twitter.com/stevenewcomb) from [Famous.co](https://famous.co) to build the tinder user interface. I utilized [React](https://facebook.github.io/react/), [InteractJS](http://interactjs.io/), and [TweenJS](https://github.com/tweenjs/tween.js) to build this application. Try it out [here](http://devonbradley.com/tinder-interface).
