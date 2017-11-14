@@ -25,7 +25,7 @@ export default class Button extends Component {
       let leftBound = -1 * window.innerWidth
       let rightBound = window.innerWidth + 250
       let leftOrRight = this.props.posOrNeg === "positive" ? rightBound : leftBound
-      if (this.props.posOrNeg == 'positive'){
+      if (this.props.posOrNeg === 'positive'){
           console.log('YES MATCH');
       } else {
           console.log('NO MATCH');

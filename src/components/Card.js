@@ -65,6 +65,10 @@ export default class Card extends Component {
 
     return <div id={"card"+ this.props.idx} className="Card" style={cardStyle} >
       <img src={process.env.PUBLIC_URL + this.props.imgUrl} alt="me" />
+      <div id="card-info">
+        <div id="name">[FIRST LAST]</div>
+        <div id="info">[LOCATION | PRACTICE]</div>
+      </div>
     </div>
   }
 }
