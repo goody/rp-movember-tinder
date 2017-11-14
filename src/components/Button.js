@@ -25,6 +25,11 @@ export default class Button extends Component {
       let leftBound = -1 * window.innerWidth
       let rightBound = window.innerWidth + 250
       let leftOrRight = this.props.posOrNeg === "positive" ? rightBound : leftBound
+      if (this.props.posOrNeg == 'positive'){
+          console.log('YES MATCH');
+      } else {
+          console.log('NO MATCH');
+      }
 
       var tween = new TWEEN.Tween({x: 0, y: 0})
       tween.to({ x: leftOrRight, y: -100 }, 450)

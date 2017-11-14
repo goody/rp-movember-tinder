@@ -39,6 +39,7 @@ export default class Card extends Component {
     let card = this
     let leftBound = -50
     let rightBound = window.innerWidth + 50
+    debugger;
 
     if (positionX < rightBound && positionX > leftBound) {
       var tween = new TWEEN.Tween({x: this.state.x, y: this.state.y})
@@ -48,8 +49,10 @@ export default class Card extends Component {
       })
       tween.start();
     } else if (positionX > rightBound) {
+        console.log('YES STACHE');
       this.props.shiftCard()
     } else if (positionX < leftBound) {
+        console.log('NO STACHE');
       this.props.shiftCard()
     }
   }

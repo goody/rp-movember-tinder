@@ -4,7 +4,7 @@ import './App.css'
 import Buttons from './components/Buttons'
 import CardDeck from './components/CardDeck'
 
-const IMAGE_URLS = ["/me.jpg", "/me2.jpg", "/me3.jpg", "/me4.jpg", "/me5.jpg"]
+const IMAGE_URLS = ["/alex.jpg", "/brad.jpg", "/jason.jpg", "/jim.jpg", "/johnd.jpg", "/josh.jpg", "/michael.jpg", "/mike.jpg", "/mikeb.jpg", "/paul.jpg", "/tim.jpg"]
 
 class App extends Component {
   constructor() {
