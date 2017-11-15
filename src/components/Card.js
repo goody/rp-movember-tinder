@@ -64,10 +64,10 @@ export default class Card extends Component {
     }
 
     return <div id={"card"+ this.props.idx} className="Card" style={cardStyle} >
-      <img src={process.env.PUBLIC_URL + this.props.imgUrl} alt="me" />
-      <div id="card-info">
-        <div id="name">[FIRST LAST]</div>
-        <div id="info">[LOCATION | PRACTICE]</div>
+      <img src={process.env.PUBLIC_URL + this.props.imgUrl} alt="{this.props.fullName}" />
+      <div className="card-info">
+        <div className="name">{this.props.fullName}</div>
+        <div className="location-practice">{this.props.location} | {this.props.practice}</div>
       </div>
     </div>
   }
