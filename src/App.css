@@ -73,20 +73,29 @@
     background-image: url("/rpbg.png");
 }
 
-.welcome p {
-    font-family: 'Freight Text Pro Bold';
-    font-size: 16px;
-    letter-spacing: 0.7px;
-    text-align: left;
-    color: #ffffff;    
-}
-
 .rpLogo{
         width: 121px;
         height: 92px;
         object-fit: contain;
         margin: 95px auto 50px auto;
 }
+
+.mainTitle {
+    font-size: 24px;
+    letter-spacing: 1px;
+    text-align: center;
+    font-family: 'freight-text-pro', serif;
+    color: #ffffff;
+}
+
+.subTitle {
+    font-size: 15px;
+    letter-spacing: 0.6px;
+    text-align: center;
+    font-family: "Proxima Nova";
+    color: #ffffff;
+}
+
 .startButton {
     font-family: 'Proxima Nova';
     font-size: 18px;

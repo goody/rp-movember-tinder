@@ -3,65 +3,83 @@ import './App.css'
 
 import Buttons from './components/Buttons'
 import CardDeck from './components/CardDeck'
+import Results from './components/Results'
 
 const MUSTACHES = [
             {   
-                img: "/alex.jpg",
-                fullName: "Alex Swarthout",
-                practice: "Internal",
+                img: "/TimStahl.jpg",
+                fullName: "Tim Stahl",
+                practice: "Creative",
                 location: "Chicago"
             },
             {   
-                img: "/jason.jpg",
-                fullName: "Jason",
-                practice: "Internal",
+                img: "/JimNoellsh.jpg",
+                fullName: "JimNoellsh",
+                practice: "CMS",
                 location: "Chicago"
             },
             {   
-                img: "/brad.jpg",
-                fullName: "brad",
-                practice: "Internal",
+                img: "/AaronStarkston.jpg",
+                fullName: "Aaron Starkston",
+                practice: "App Dev",
                 location: "Chicago"
             },
             {   
-                img: "/jim.jpg",
-                fullName: "jim",
-                practice: "Internal",
+                img: "/MikeMcDermott.jpg",
+                fullName: "Mike McDermott",
+                practice: "Managed Services",
                 location: "Chicago"
             },
             {   
-                img: "/johnd.jpg",
-                fullName: "Alex Swarthout",
-                practice: "Internal",
+                img: "/BradKramer.jpg",
+                fullName: "Brad Kramer",
+                practice: "PMO",
                 location: "Chicago"
             },
             {   
-                img: "/josh.jpg",
-                fullName: "Alex Swarthout",
-                practice: "Internal",
+                img: "/JasonShutters.jpg",
+                fullName: "Jason Shutters",
+                practice: "BI",
                 location: "Chicago"
             },
             {   
-                img: "/mike.jpg",
-                fullName: "Alex Swarthout",
-                practice: "Internal",
+                img: "/ScotGoodhart.jpg",
+                fullName: "Scot Goodhart",
+                practice: "Salesforce",
                 location: "Chicago"
-            }
+            },            
+            {   
+                img: "/MikeJohnson.jpg",
+                fullName: "Mike Johnson",
+                practice: "Managed Services",
+                location: "Chicago"
+            },
+            {   
+                img: "/ChetPovin.jpg",
+                fullName: "Chet Povin",
+                practice: "Managed Services",
+                location: "Chicago"
+            }            
         ];            
-          //     " "/brad.jpg", "/jason.jpg", "/jim.jpg", "/johnd.jpg", "/josh.jpg", "/michael.jpg", "/mike.jpg", "/mikeb.jpg", "/paul.jpg", "/tim.jpg"]
 
 class App extends Component {
   constructor() {
     super()
     this.handleWelcomeClick = this.handleWelcomeClick.bind(this);
+    this.handleResultsClick = this.handleResultsClick.bind(this);
     this.state = {
       cards: MUSTACHES,
-      isHome: true
+      isHome: true,
+      isResults: false
     }
   }
 
   handleWelcomeClick() {
     this.setState({isHome: false});
+  }
+
+  handleResultsClick() {
+      this.setState({isResults: true});
   }
 
   componentDidUpdate() {
@@ -74,20 +92,23 @@ class App extends Component {
     this.setState({cards})
   }
 
-  render() {
-    const isHome = this.state.isHome;
-    let page = null;
-    if(isHome){
-            page =  <WelcomePage onClick={this.handleWelcomeClick} />;
-    } else {
-        page = <div className="App"><CardDeck cards={this.state.cards} shiftCard={this.shiftCard.bind(this)} /><Buttons cards={this.state.cards} shiftCard={this.shiftCard.bind(this)} /></div>;
+    render() {
+        const isHome = this.state.isHome;
+        const isResults = this.state.isResults;
+        let page = null;
+        if (isHome) {
+            page = <WelcomePage onClick={this.handleWelcomeClick} />;
+        } else if (isResults) {
+            page = <Results />
+        } else {
+            page = <div className="App"><CardDeck cards={this.state.cards} shiftCard={this.shiftCard.bind(this)} /><Buttons cards={this.state.cards} shiftCard={this.shiftCard.bind(this)} /></div>;
+        }
+        return (
+            <div className="App">
+                {page}
+            </div>
+        )
     }
-    return (
-          <div className="App">
-            {page}
-          </div>
-    )
-  }
 }
 
 function WelcomePage(props) {
@@ -95,14 +116,28 @@ function WelcomePage(props) {
         <div className="welcome" >
         <img className="rpLogo" src={process.env.PUBLIC_URL + '/group-2.png'} alt="RP Movemer" />
         <div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.Phasellus non feugiat enim.Proin egestas aliquet erat et aliquet. Morbi nec tempus enim.Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.Aenean vel metus rutrum, ullamcorper purus congue, congue orci.</p>
+        <p className="mainTitle">Vote for your favorite stache to determine the 2017 Movember winner!</p>
+        <p className="subTitle">you can vote for each stache as many times as you want</p>
         </div>
         <button className="startButton" onClick={props.onClick}>
         Start Here
       </button>        
         </div>
-
     );
   }
+
+  /* 
+  #################### results obj
+  var obj = JSON.parse(text); 
+console.dir(Object.values(obj.votes));
+var totals = Object.values(obj.votes).reduce(function(sums,value){
+  if(!sums.hasOwnProperty(value.person)){sums[value.person] = {yes:0,no:0}};
+   sums[value.person] = { yes: sums[value.person].yes += (value.vote == 'YES') ?  1 : 0,
+                         no: sums[value.person].no += (value.vote == 'NO') ?  1 : 0 }
+   return sums;
+},{});
+  
+console.dir(totals);
+ */
 
 export default App;
