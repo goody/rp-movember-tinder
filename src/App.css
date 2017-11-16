@@ -62,3 +62,43 @@
     background-color: rgba(0, 0, 0, 0.7);
     padding: 5px;
 }
+
+.welcome {
+    display: flex;
+    flex-direction: column;
+    background: #ccc;
+    padding: 0  10vw;
+    text-align: center;
+    height: 100vh;
+    background-image: url("/rpbg.png");
+}
+
+.welcome p {
+    font-family: 'Freight Text Pro Bold';
+    font-size: 16px;
+    letter-spacing: 0.7px;
+    text-align: left;
+    color: #ffffff;    
+}
+
+.rpLogo{
+        width: 121px;
+        height: 92px;
+        object-fit: contain;
+        margin: 95px auto 50px auto;
+}
+.startButton {
+    font-family: 'Proxima Nova';
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.4px;
+    text-align: center;
+    color: #121212;
+    text-transform: uppercase;
+    width: 259px;
+    height: 44px;
+    background-color: #ffbf19;
+    margin: 0 auto;
+    box-shadow: 0px 0px 10px #888888;
+    border:none;
+}
