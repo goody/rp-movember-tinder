@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import fire from './fire';
 import TWEEN from '@tweenjs/tween.js'
 
 function animate(time) {
@@ -18,28 +19,36 @@ export default class Button extends Component {
     requestAnimationFrame(animate);
   }
 
+  swipeVote(person, vote){
+    /* Send the message to Firebase */
+    fire.database().ref('votes').push( {person: person, vote: vote} );
+  }
+
+
   handleClick(event) {
     if (this.props.animationInProgress === false) {
-      this.props.toggleAnimationInProgress(true)
-      let currentCard = document.getElementsByClassName('Card')[this.props.cards.length - 1]
-      let leftBound = -1 * window.innerWidth
-      let rightBound = window.innerWidth + 250
-      let leftOrRight = this.props.posOrNeg === "positive" ? rightBound : leftBound
-      if (this.props.posOrNeg === 'positive'){
-          console.log('YES MATCH');
-      } else {
-          console.log('NO MATCH');
-      }
+      this.props.toggleAnimationInProgress(true);
+      let currentCard = document.getElementsByClassName('Card')[this.props.cards.length - 1];
+      let leftBound = -1 * window.innerWidth;
+      let rightBound = window.innerWidth + 250;
+      let leftOrRight = this.props.posOrNeg === "positive" ? rightBound : leftBound;
+    if (this.props.posOrNeg === 'positive') {
+        this.swipeVote(currentCard.id.substring(4), 'YES');
+        console.log('SWIPE YES');
+    } else {
+        this.swipeVote(currentCard.id.substring(4), 'NO');
+        console.log('SWIPE NO');
+    }
 
-      var tween = new TWEEN.Tween({x: 0, y: 0})
-      tween.to({ x: leftOrRight, y: -100 }, 450)
+      var tween = new TWEEN.Tween({x: 0, y: 0});
+      tween.to({ x: leftOrRight, y: -100 }, 450);
       tween.onUpdate(function () {
         currentCard.style.transform = 'translate(' + this.x + 'px, ' + this.y + 'px)';
-      })
+      });
       tween.onComplete(() => {
         this.props.shiftCard()
         this.props.toggleAnimationInProgress(false)
-      })
+      });
       tween.start();
     }
   }

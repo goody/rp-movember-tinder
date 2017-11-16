@@ -3,6 +3,7 @@ import './App.css'
 
 import Buttons from './components/Buttons'
 import CardDeck from './components/CardDeck'
+import Movember from './components/Movember'
 
 const MUSTACHES = [
             {   
@@ -54,7 +55,8 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      cards: MUSTACHES
+      cards: MUSTACHES,
+      isHome: false
     }
   }
 
@@ -69,11 +71,17 @@ class App extends Component {
   }
 
   render() {
+    const isHome = this.state.isHome;
+    let page = null;
+    if(isHome){
+        page =  <Movember />;
+    } else {
+        page = <div className="App"><CardDeck cards={this.state.cards} shiftCard={this.shiftCard.bind(this)} /><Buttons cards={this.state.cards} shiftCard={this.shiftCard.bind(this)} /></div>;
+    }
     return (
-      <div className="App">
-        <CardDeck cards={this.state.cards} shiftCard={this.shiftCard.bind(this)} />
-        <Buttons cards={this.state.cards} shiftCard={this.shiftCard.bind(this)} />
-      </div>
+          <div className="App">
+            {page}
+          </div>
     )
   }
 }

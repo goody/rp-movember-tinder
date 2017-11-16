@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import interact from 'interactjs'
+import fire from './fire';
 import TWEEN from '@tweenjs/tween.js'
 
 function animate(time) {
@@ -27,6 +28,12 @@ export default class Card extends Component {
     requestAnimationFrame(animate);
   }
 
+  swipeVote(person, vote){
+    /* Send the message to Firebase */
+    fire.database().ref('votes').push( {person: person, vote: vote} );
+  }
+
+
   handleDrag (event) {
      var x = (parseFloat(this.state.x) || 0) + event.dx,
          y = (parseFloat(this.state.y) || 0) + event.dy;
@@ -34,28 +41,28 @@ export default class Card extends Component {
      this.setState({x, y})
    }
 
-  handleDragEnd(event) {
-    let positionX = event.pageX;
-    let card = this
-    let leftBound = -50
-    let rightBound = window.innerWidth + 50
-    debugger;
-
-    if (positionX < rightBound && positionX > leftBound) {
-      var tween = new TWEEN.Tween({x: this.state.x, y: this.state.y})
-      tween.to({ x: 0, y: 0 }, 250)
-      tween.onUpdate(function () {
-        card.setState({x: this.x, y: this.y})
-      })
-      tween.start();
-    } else if (positionX > rightBound) {
-        console.log('YES STACHE');
-      this.props.shiftCard()
-    } else if (positionX < leftBound) {
-        console.log('NO STACHE');
-      this.props.shiftCard()
+    handleDragEnd(event) {
+        let positionX = event.pageX;
+        let card = this;
+        let leftBound = -50;
+        let rightBound = window.innerWidth + 50;
+        if (positionX < rightBound && positionX > leftBound) {
+            var tween = new TWEEN.Tween({ x: this.state.x, y: this.state.y })
+            tween.to({ x: 0, y: 0 }, 250);
+            tween.onUpdate(function () {
+                card.setState({ x: this.x, y: this.y })
+            });
+            tween.start();
+        } else if (positionX > rightBound) {
+            console.log('SWIPE YES');
+            this.swipeVote(card.props.idx, 'YES');
+            this.props.shiftCard();
+        } else if (positionX < leftBound) {
+            console.log('SWIPE NO');
+            this.swipeVote(card.props.idx, 'NO');
+            this.props.shiftCard();
+        }
     }
-  }
 
   render() {
     let {x, y} = this.state
