@@ -31,6 +31,12 @@ const MUSTACHES = [
                 location: "Chicago"
             },
             {   
+                img: "/TimKippley.jpg",
+                fullName: "Tim Kippley",
+                practice: "Solutions",
+                location: "Chicago"
+            },            
+            {   
                 img: "/BradKramer.jpg",
                 fullName: "Brad Kramer",
                 practice: "PMO",
@@ -59,7 +65,7 @@ const MUSTACHES = [
                 fullName: "Chet Povin",
                 practice: "Managed Services",
                 location: "Chicago"
-            }            
+            }         
         ];            
 
 class App extends Component {
@@ -68,7 +74,7 @@ class App extends Component {
     this.handleWelcomeClick = this.handleWelcomeClick.bind(this);
     this.handleResultsClick = this.handleResultsClick.bind(this);
     this.state = {
-      cards: MUSTACHES,
+      cards: this.shuffleDeck(MUSTACHES),
       isHome: true,
       isResults: false
     }
@@ -79,11 +85,31 @@ class App extends Component {
   }
 
   handleResultsClick() {
+    this.setState({isHome: false});
       this.setState({isResults: true});
   }
 
   componentDidUpdate() {
-    if (this.state.cards.length === 0) this.setState({cards: MUSTACHES})
+    if (this.state.cards.length === 0) this.setState({cards: this.shuffleDeck(MUSTACHES)})
+  }
+
+  shuffleDeck(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+  
+    return array;
   }
 
   shiftCard() {
@@ -97,7 +123,7 @@ class App extends Component {
         const isResults = this.state.isResults;
         let page = null;
         if (isHome) {
-            page = <WelcomePage onClick={this.handleWelcomeClick} />;
+            page = <WelcomePage onClick={this.handleWelcomeClick} show={this.handleResultsClick} />;
         } else if (isResults) {
             page = <Results />
         } else {
@@ -122,6 +148,9 @@ function WelcomePage(props) {
         <button className="startButton" onClick={props.onClick}>
         Start Here
       </button>        
+      <button className="startButton" onClick={props.show}>
+        Show Results
+      </button>         
         </div>
     );
   }
