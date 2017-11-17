@@ -12,13 +12,12 @@ export default class Results extends Component {
   count = 0;
 
   componentDidMount() {
-    this.timerID = setInterval(
-        () => {
-    //get data and set state.results.
+
     let self = this;
     fire.database().ref('votes').once('value')
         .then(snapshot => {
             let obj = snapshot.val();
+            let arr = [];
             let totals = Object.values(obj).reduce(function(sums,value){
                 if(!sums.hasOwnProperty(value.person)){sums[value.person] = {yes:0,no:0}};
                 sums[value.person] = { 
@@ -27,28 +26,40 @@ export default class Results extends Component {
                     }
                 return sums;
             },{});
-            
-
-            self.setState({results: totals});        
-    }),
-       1000 });
+            Object.keys(totals).map(function (key, idx) {
+                let o = { name: key, total: totals[key].yes };
+                arr.push(o);
+            });
+            arr = arr.sort(function(a,b) {return (a.total < b.total) ? 1 : ((b.total < a.total) ? -1 : 0);} );
+            self.setState({results: arr});        
+    });
   }
 
   componentWillUnmount() {
     clearInterval(this.timerID);
   }
 
-  render() {
+    makeAname(combinedName) {
+        let fullName = '';
+        let arr = combinedName.split(/(?=[A-Z])/);
+        if (arr.length === 1) {
+            fullName = arr[0];
+        } else {
+            fullName = arr[0] + ' ' + arr[1];
+        }
+        return fullName
+    }
 
-    return <div>
+  render() {
+    return <div className="results">
         <h3>Results</h3>
-        <ul>
+        <div>
           { /* Render the list of messages */
-            Object.keys(this.state.results).map( key => 
-                <li>{key} | {this.state.results[key].yes}</li>
+            this.state.results.map( (val, idx) => 
+                <div className="resultsItem"><span>{idx+1}</span>{val.name} | {val.total}</div>
             )
           }
-        </ul>
+        </div>
 
     </div>
   }

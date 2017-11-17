@@ -13,8 +13,26 @@ const MUSTACHES = [
                 location: "Chicago"
             },
             {   
-                img: "/JimNoellsh.jpg",
-                fullName: "JimNoellsh",
+                img: "/RyanCorliss.jpg",
+                fullName: "Ryan Corliss",
+                practice: "Sharepoint",
+                location: "Chicago"
+            },            
+            {   
+                img: "/BillFinn.jpg",
+                fullName: "Bill Finn",
+                practice: "Content Strategy",
+                location: "Chicago"
+            },            
+            {   
+                img: "/BradSchneider.jpg",
+                fullName: "Brad Schneider ",
+                practice: "Co-Founder",
+                location: "Chicago"
+            },            
+            {   
+                img: "/JimNoellsch.jpg",
+                fullName: "Jim Noellsch",
                 practice: "CMS",
                 location: "Chicago"
             },
@@ -30,6 +48,12 @@ const MUSTACHES = [
                 practice: "Managed Services",
                 location: "Chicago"
             },
+            {   
+                img: "/ZachQuinn.jpg",
+                fullName: "Zach Quinn",
+                practice: "Managed Services",
+                location: "Chicago"
+            },            
             {   
                 img: "/TimKippley.jpg",
                 fullName: "Tim Kippley",
@@ -130,8 +154,7 @@ class App extends Component {
             page = <div className="App">
             <div className="vote">Vote</div>
             <CardDeck cards={this.state.cards} shiftCard={this.shiftCard.bind(this)} />
-            <Buttons cards={this.state.cards} shiftCard={this.shiftCard.bind(this)} /
-            ></div>;
+            <Buttons cards={this.state.cards} shiftCard={this.shiftCard.bind(this)} /></div>;
         }
         return (
             <div className="App">
@@ -152,25 +175,10 @@ function WelcomePage(props) {
         <button className="startButton" onClick={props.onClick}>
         Start Here
       </button>        
-      <button className="startButton" onClick={props.show}>
-        Show Results
-      </button>         
+      
         </div>
     );
   }
 
-  /* 
-  #################### results obj
-  var obj = JSON.parse(text); 
-console.dir(Object.values(obj.votes));
-var totals = Object.values(obj.votes).reduce(function(sums,value){
-  if(!sums.hasOwnProperty(value.person)){sums[value.person] = {yes:0,no:0}};
-   sums[value.person] = { yes: sums[value.person].yes += (value.vote == 'YES') ?  1 : 0,
-                         no: sums[value.person].no += (value.vote == 'NO') ?  1 : 0 }
-   return sums;
-},{});
-  
-console.dir(totals);
- */
 
 export default App;
