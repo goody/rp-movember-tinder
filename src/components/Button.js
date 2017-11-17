@@ -69,7 +69,7 @@ export default class Button extends Component {
 
     return (
       <div className={"button " + this.props.posOrNeg} onClick={this.handleClick.bind(this)} onMouseDown={this.handleMouseDown.bind(this)} onMouseUp={this.handleMouseUp.bind(this)} onMouseLeave={this.handleMouseUp.bind(this)} onTouchStart={this.handleMouseDown.bind(this)} onTouchEnd={this.handleMouseUp.bind(this)} onTouchCancel={this.handleMouseUp.bind(this)} style={dynamicStyle}>
-        <i className={"fa fa-" + this.props.heartOrTimes + " fa-5x"} />
+        <i className={"fa fa-" + this.props.heartOrTimes + " fa-3x"} />
       </div>
     )
   }
