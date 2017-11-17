@@ -127,7 +127,11 @@ class App extends Component {
         } else if (isResults) {
             page = <Results />
         } else {
-            page = <div className="App"><CardDeck cards={this.state.cards} shiftCard={this.shiftCard.bind(this)} /><Buttons cards={this.state.cards} shiftCard={this.shiftCard.bind(this)} /></div>;
+            page = <div className="App">
+            <div className="vote">Vote</div>
+            <CardDeck cards={this.state.cards} shiftCard={this.shiftCard.bind(this)} />
+            <Buttons cards={this.state.cards} shiftCard={this.shiftCard.bind(this)} /
+            ></div>;
         }
         return (
             <div className="App">

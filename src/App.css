@@ -2,6 +2,15 @@
   height: 100%;
 }
 
+.vote{
+    font-family: 'Freight-Text-Pro-Semi-bold';
+    font-size: 25px;
+    text-align: left;
+    color: #121212;
+    text-align: center;
+    margin: 10px auto;
+}
+
 .CardDeck {
   position: relative;
   margin: auto;
@@ -12,8 +21,8 @@
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
   background-color: white;
-  height: 45vh;
-  width: 45vh;
+  height: 60vh;
+  width: 50vh;
   margin: auto;
   overflow: hidden;
   display: flex;
@@ -21,7 +30,7 @@
 }
 
 .Card img {
-  width: 45vh;
+  width: 50vh;
 }
 
 .Buttons {
@@ -30,6 +39,7 @@
   flex: 1;
   align-items: center;
   justify-content: space-around;
+  margin-top:5vh;
 }
 
 .button {
@@ -55,8 +65,8 @@
     position: fixed;
     bottom: 10%;
     left: 10%;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.7);
+    color: #000;
+    background-color: rgba(255, 255, 255, 0.7);
     padding: 5px;
 }
 
