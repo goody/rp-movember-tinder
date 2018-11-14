@@ -12,8 +12,9 @@ export default class Results extends Component {
   count = 0;
 
   componentDidMount() {
-
     let self = this;
+    this.timerID = setInterval(
+        () => 
     fire.database().ref('votes').once('value')
         .then(snapshot => {
             let obj = snapshot.val();
@@ -32,7 +33,8 @@ export default class Results extends Component {
             });
             arr = arr.sort(function(a,b) {return (a.total < b.total) ? 1 : ((b.total < a.total) ? -1 : 0);} );
             self.setState({results: arr});        
-    });
+    }),
+    5000);
   }
 
   componentWillUnmount() {
@@ -44,6 +46,8 @@ export default class Results extends Component {
         let arr = combinedName.split(/(?=[A-Z])/);
         if (arr.length === 1) {
             fullName = arr[0];
+        } else if (arr.length === 3){
+            fullName = arr[0] + ' ' + arr[1]+arr[2];
         } else {
             fullName = arr[0] + ' ' + arr[1];
         }
@@ -53,14 +57,18 @@ export default class Results extends Component {
   render() {
     return <div className="results">
         <h3>Results</h3>
-        <div>
+        <div className="refresh">(refreshes every 5 seconds)</div>
+        <div className="resultsList">
           { /* Render the list of messages */
             this.state.results.map( (val, idx) => 
-                <div className="resultsItem"><span>{idx+1}</span>{val.name} | {val.total}</div>
+            <div className="resultItem">
+                <div className="resultPlace">{idx+1}</div>
+                <div className="resultName">{this.makeAname(val.name)}</div>
+                <div className="resultTotal">{val.total}</div>
+            </div>
             )
           }
         </div>
-
     </div>
   }
 }

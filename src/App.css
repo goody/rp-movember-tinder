@@ -114,34 +114,53 @@
     width: 259px;
     height: 44px;
     background-color: #ffbf19;
-    margin: 0 auto;
+    margin: 10px auto;
     box-shadow: 0px 0px 10px #888888;
     border:none;
 }
 
 .results {
-    display: flex;
-    flex-direction: column;
-    color: #fff;
-    padding: 0  10vw;
-    text-align: center;
-    height: 100vh;
-    background-image: url("/rpbg.png");
-    overflow: scroll;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  color: #fff;
+  padding: 0 10vw;
+  text-align: center;
+  height: 100vh;
+  background-image: url("/rpbg.png");
+  overflow: scroll
 }
 
-ol {
-color: #ccc;
-list-style-type: none;
+.refresh {
+  font-size: .8em;
+  font-style: italic;
+  margin-bottom: 10px
 }
 
-ol li {
-position: relative;
-font: bold italic 45px/1.5 Helvetica, Verdana, sans-serif;
+.resultsList {
+  display: grid;
+  grid-template-columns: 1fr
 }
 
-li p {
-font: 12px/1.5 Helvetica, sans-serif;
-color: #fff;
+.resultItem {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  padding: 5px;
+  border-bottom: 1px solid #f6f8fa91;
 }
 
+.resultPlace {
+  grid-column: 1;
+  grid-row: 1
+}
+
+.resultName {
+  grid-column: 2/4;
+  grid-row: 1
+}
+
+.resultTotal {
+  grid-column: 4;
+  grid-row: 1
+}

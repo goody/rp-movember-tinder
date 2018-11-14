@@ -169,12 +169,15 @@ function WelcomePage(props) {
         <div className="welcome" >
         <img className="rpLogo" src={process.env.PUBLIC_URL + '/group-2.png'} alt="RP Movemer" />
         <div>
-        <p className="mainTitle">Vote for your favorite stache to determine the 2017 Movember winner!</p>
+        <p className="mainTitle">Vote for your favorite stache to determine the 2018 Movember winner!</p>
         <p className="subTitle">you can vote for each stache as many times as you want</p>
         </div>
         <button className="startButton" onClick={props.onClick}>
         Start Here
       </button>        
+      <button className="startButton" onClick={props.show}>
+        Live Results
+      </button>      
       
         </div>
     );
